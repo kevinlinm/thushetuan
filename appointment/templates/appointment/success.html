@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" type="text/css" href="{% static 'appointment/style.css' %}" />
+    <title>预约成功</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="text-align">
+                您好，{{ username }}（{{ thu_id }}）！<br />
+                您已经成功预约4月25日{{ time }}的{{ mode }}{{ gamename }}！<br /><br />
+                {% if mode == '2v2' %}
+                请带上一个队友，凭学生卡提前五分钟到场取号。如果不能按时到场，资格将转移给现场观众。
+                {% else %}
+                请带上两个队友，凭学生卡提前五分钟到场取号。如果不能按时到场，资格将转移给现场观众。
+                {% endif %}
+            </h4>
+        </div>
+    </div>
+</div>
+</body>
+</html>

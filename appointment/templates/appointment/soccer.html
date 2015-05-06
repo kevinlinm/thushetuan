@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" type="text/css" href="{% static 'appointment/style.css' %}" />
+    <title>泡泡足球预约</title>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            <h3 class="text-center">泡泡足球预约</h3>
+        </div>
+    </div>
+    {% if error_message %}
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            <h4 class="text-center"><strong>{{ error_message }}</strong></h4>
+        </div>
+    </div>
+    {% endif %}
+    <br />
+    <form class="form-horizontal" action="/appointment/book/?game=2" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username" class="col-xs-3 control-label text-right"><h5>姓名</h5></label>
+            <div class="col-xs-8">
+                <input type="text" class="form-control" id="username" name="username" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="thu_id" class="col-xs-3 control-label text-right"><h5>学号</h5></label>
+            <div class="col-xs-8">
+                <input type="text" class="form-control" id="thu_id" name="thu_id" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="tel" class="col-xs-3 control-label text-right"><h5>电话</h5></label>
+            <div class="col-xs-8">
+                <input type="text" class="form-control" id="tel" name="tel" />
+            </div>
+        </div>
+
+        <table class="table table-condensed table-striped">
+            <thead>
+                <tr>
+                    <td class="col-xs-1"></td>
+                    <td class="col-xs-5 text-center"><h5>时间段</h5></td>
+                    <td class="col-xs-2 text-center"><h5>模式</h5></td>
+                    <td class="col-xs-4 text-center"><h5>剩余票数</h5></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                <tr>
+                    <td class="text-center vert-align">
+                        <div class="radio">
+                            <label>
+                                {% if ticket.number > 0 %}
+                                <input type="radio" name="choice" value="{{ ticket.id }}" />
+                                {% else %}
+                                <input type="radio" name="choice" value="{{ ticket.id }}" disabled=true />
+                                {% endif %}
+                            </label>
+                        </div>
+                    </td>
+                    <td class="text-center vert-align">
+                        <h5>{{ ticket.time }}</h5>
+                    </td>
+                    <td class="text-center vert-align">
+                        <h5>2v2</h5>
+                    </td>
+                    <td class="text-center vert-align">
+                        <h5>{{ ticket.number }}</h5>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="form-group">
+            <div class="col-xs-6 col-xs-offset-3">
+                <button type="submit" class="btn btn-primary btn-block"/>
+                    <h5>确认预约</h5>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<br />
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted text-center">
+            联系我们：shetuan@mail.tsinghua.edu.cn
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

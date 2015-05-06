@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    
+    {% if draw_id == '0' %}
+        <title>清华转运签｜我的期中运势是：跪</title>
+        <div style="display:none;" ><img src="{% static 'draw/gui_sm.jpg' %}" /></div>
+    {% elif draw_id == '1' %}
+        <title>清华转运签｜我的期中运势是：立</title>
+        <div style="display:none;" ><img src="{% static 'draw/li_sm.jpg' %}" /></div>
+    {% elif draw_id == '2' %}
+        <title>清华转运签｜我的期中运势是：神</title>
+        <div style="display:none;" ><img src="{% static 'draw/shen_sm.jpg' %}" /></div>
+    {% elif draw_id == '3' %}
+        <title>清华转运签｜我的期中运势是：虚</title>
+        <div style="display:none;" ><img src="{% static 'draw/xu_sm.jpg' %}" /></div>
+    {% elif draw_id == '4' %}
+        <title>清华转运签｜我的期中运势是：渣</title>
+        <div style="display:none;" ><img src="{% static 'draw/zha_sm.jpg' %}" /></div>
+    {% elif draw_id == '5' %}
+        <title>清华转运签｜我的期中运势是：醉</title>
+        <div style="display:none;" ><img src="{% static 'draw/zui_sm.jpg' %}" /></div>
+    {% elif draw_id == '6' %}
+        <title>夜哥的签</title>
+        <div style="display:none;" ><img src="{% static 'draw/shen_sm.jpg' %}" /></div>
+    {% elif draw_id == '7' %}
+        <title>一哥的签</title>
+        <div style="display:none;" ><img src="{% static 'draw/shen_sm.jpg' %}" /></div>
+    {% endif %}
+</head>
+<body>
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-xs-12">
+            {% if draw_id == '0' %}
+                <img style="display:block;width:100%;" src="{% static 'draw/gui.jpg' %}" alt="" />
+            {% elif draw_id == '1' %}
+                <img style="display:block;width:100%;" src="{% static 'draw/li.jpg' %}" alt="" />
+            {% elif draw_id == '2' %}
+                <img style="display:block;width:100%;" src="{% static 'draw/shen.jpg' %}" alt="" />
+            {% elif draw_id == '3' %}
+                <img style="display:block;width:100%;" src="{% static 'draw/xu.jpg' %}" alt="" />
+            {% elif draw_id == '4' %}
+                <img style="display:block;width:100%;" src="{% static 'draw/zha.jpg' %}" alt="" />
+            {% elif draw_id == '5' %}
+                <img style="display:block;width:100%;" src="{% static 'draw/zui.jpg' %}" alt="" />
+            {% elif draw_id == '6' %}
+                <h3 class='text-center'>夜哥生日快乐！^_^</h3>
+            {% elif draw_id == '7' %}
+                <h3 class='text-center'>一哥高富帅！</h3>
+                <h3 class='text-center'>新婚快乐∩＿∩</h3>
+            {% endif %}
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+            <a role="button" class="btn btn-success btn-block" href="/draw/">
+                抽取你的清华签
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<br />
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted text-center">
+            联系我们：shetuan@mail.tsinghua.edu.cn
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

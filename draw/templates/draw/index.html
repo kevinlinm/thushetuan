@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" type="text/css" href="{% static 'draw/style.css' %}" />
+    <title>清华签</title>
+</head>
+<body>
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-xs-12">
+            <img style="display:block;width:100%;" src="{% static 'draw/qian.jpg' %}" alt="" />
+        </div>
+    </div>
+    <br />
+    <form class="form-inline" action="/draw/luck/" method="post">
+        {% csrf_token %}
+        <div class="col-xs-8 form-group">
+            <label for="username" class="sr-only">姓名</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="姓名" />
+        </div>
+        <div class="col-xs-4">
+            <button type="submit" class="btn btn-primary btn-block"/>抽签</button>
+        </div>
+    </form>
+    {% if error_message %}
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            <p class="text-center"><strong>{{ error_message }}</strong></p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<br />
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted text-center">
+            联系我们：shetuan@mail.tsinghua.edu.cn
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
